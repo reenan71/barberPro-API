@@ -26,7 +26,7 @@ class CreateHaircutService {
             }
         });
         //VERIFICA SE O USUARIO TEM 3 MODELOS DE CORTES CADASTRADO E NÁO É PREMIUM
-        if (qtdHaircuts >= 3 && user?.subscriptions.status !== 'active') {
+        if (user && user.subscriptions && qtdHaircuts >= 3 && user?.subscriptions.status !== 'active') {
             throw new Error("Not authorized");
         }
         const haircut = await prisma_1.default.haircut.create({

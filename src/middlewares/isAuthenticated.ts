@@ -6,7 +6,7 @@ interface Payload{
     sub: string;
 }
 
-export function isAuthenticated(req: Request, res:Response, next: NextFunction){
+export function isAuthenticated(req: Request, res:Response, next: NextFunction): void{
     const authToken = req.headers.authorization;
 
     if(!authToken){
@@ -19,7 +19,7 @@ export function isAuthenticated(req: Request, res:Response, next: NextFunction){
     try{
         const { sub } = verify(
             token,
-            process.env.JWT_SECRET
+            process.env.JWT_SECRET || "defaultSecret"
         ) as Payload;
 
         req.user_id = sub;//Variavel @type/express 

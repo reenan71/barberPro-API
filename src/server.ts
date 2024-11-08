@@ -16,6 +16,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
             error: err.message
         })
     }
+    
 
     return res.status(500).json({
         status: 'error',

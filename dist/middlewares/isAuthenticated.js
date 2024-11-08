@@ -11,7 +11,7 @@ function isAuthenticated(req, res, next) {
     const [, token] = authToken.split(" ");
     //VERIFICA O TOKEN DO USUARIO E PERMITE QUE ELE ACESSE A ROTA
     try {
-        const { sub } = (0, jsonwebtoken_1.verify)(token, process.env.JWT_SECRET);
+        const { sub } = (0, jsonwebtoken_1.verify)(token, process.env.JWT_SECRET || "defaultSecret");
         req.user_id = sub; //Variavel @type/express 
         return next();
     }
